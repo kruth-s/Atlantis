@@ -2,12 +2,14 @@
 import React from 'react';
 import loginBg from './assets/login-bg.mp3';
 
-
+const audio = typeof window !== 'undefined' ? new Audio(loginBg) : null;
 
 const App = () => {
   const handlePlayAudio = () => {
-    const audio = new Audio(loginBg);
-    audio.play().catch(() => {});
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    }
   };
 
   return (
